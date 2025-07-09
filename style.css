@@ -1,0 +1,451 @@
+/* Import Google Fonts - Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* Palet Warna Utama (Hitam & Putih - Monokromatik) */
+    --primary-color: #333333; /* Hitam abu-abu tua untuk aksen */
+    --primary-dark: #1A1A1A; /* Hitam lebih pekat untuk hover */
+    --text-color: #333;      /* Teks Gelap Default */
+    --bg-light: #FDFDFD;     /* Latar Belakang Sangat Terang */
+    --bg-dark: #1C1C1E;      /* Latar Belakang Gelap (Mirip iOS Dark Mode) */
+    --card-bg-light: #FFFFFF;    /* Latar Belakang Kartu Terang */
+    --card-bg-dark: #2C2C2E;     /* Latar Belakang Kartu Gelap */
+    --border-color: #E0E0E0; /* Warna Border Terang */
+    --shadow-light: rgba(0,0,0,0.08); /* Shadow Ringan */
+    --font-primary: 'Inter', sans-serif; /* Font Utama */
+    --success-color: #28a745; /* Hijau untuk sukses */
+    --error-color: #dc3545;   /* Merah untuk error */
+}
+
+/* Reset Dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-y: auto;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Container Utama */
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 800px; /* Lebar optimal untuk tool ini, disesuaikan */
+    min-height: 85vh;
+    background-color: var(--card-bg-light);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px var(--shadow-light);
+    padding: 30px; /* Konsisten dengan padding card */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Header Aplikasi */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border-color); /* Tetap ada garis di bawah header */
+    padding-bottom: 20px;
+}
+
+.app-header h1 {
+    font-size: 2.5em;
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+/* Dark Mode Toggle Button */
+.dark-mode-toggle {
+    background-color: rgba(0, 0, 0, 0.05);
+    border: none;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.3em;
+    color: var(--text-color);
+    box-shadow: 0 2px 5px var(--shadow-light);
+    transition: all 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Main Content Area */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Spasi antar section, konsisten */
+}
+
+/* Card Styling (Sudah ada border penuh dari sini) */
+.card {
+    background-color: var(--card-bg-light);
+    border-radius: 10px;
+    padding: 25px; /* Padding konsisten dengan results-area/word-card */
+    border: 1px solid var(--border-color); /* Ini adalah border penuh yang Anda maksud */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Shadow ringan untuk depth */
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-title {
+    font-size: 1.6em; /* Mirip dengan .part-of-speech di dict */
+    color: var(--primary-color);
+    margin-bottom: 15px; /* Jarak bawah yang cukup dari konten */
+    font-weight: 600;
+    position: relative;
+    /* --- GARIS DIBAWAH JUDUL KARTU DIHAPUS --- */
+    /* padding-bottom: 5px; */
+}
+
+/* --- HAPUS PSEUDO-ELEMENT YANG MEMBUAT GARIS --- */
+/* .card-title::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 2px;
+    background-color: var(--primary-color);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+} */
+
+
+/* Upload Section */
+.upload-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    justify-content: center; /* Untuk menengahkan konten */
+    flex-wrap: wrap; /* Agar responsif di mobile */
+}
+
+.upload-btn {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 8px; /* Sudut sedikit melengkung */
+    padding: 12px 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+}
+
+.upload-btn:hover {
+    background-color: var(--primary-dark);
+}
+
+.file-name {
+    font-size: 1em;
+    color: #666;
+    font-weight: 500;
+}
+
+/* Preview Section */
+.image-preview-container {
+    width: 100%;
+    min-height: 200px;
+    background-color: #eee; /* Latar belakang untuk area kosong */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+#previewImage {
+    max-width: 100%;
+    max-height: 300px; /* Batasi tinggi preview */
+    object-fit: contain;
+    display: block;
+}
+
+.placeholder-text {
+    color: #888;
+    font-style: italic;
+    text-align: center;
+    padding: 20px; /* Padding agar tidak terlalu mepet */
+}
+
+/* Conversion Section */
+.format-options {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.format-btn {
+    background-color: #EFEFEF; /* Abu-abu terang */
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.format-btn:hover:not(.selected) {
+    background-color: #E0E0E0;
+    border-color: #B0B0B0;
+}
+
+.format-btn.selected {
+    background-color: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.download-btn {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: 500;
+}
+
+.download-btn:hover:not(:disabled) {
+    background-color: var(--primary-dark);
+}
+
+.download-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Status Area */
+.status-area {
+    margin-top: 10px; /* Jarak dari section di atasnya */
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: center;
+    min-height: 40px; /* Ruang untuk pesan status */
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.status-area.success {
+    background-color: rgba(40, 167, 69, 0.1);
+    color: var(--success-color);
+}
+
+.status-area.error {
+    background-color: rgba(220, 53, 69, 0.1);
+    color: var(--error-color);
+}
+
+.status-area.info {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: #666;
+}
+
+/* --- Dark Mode --- */
+body.dark-mode {
+    background-color: var(--bg-dark);
+    color: #FDFDFD;
+}
+
+body.dark-mode .container {
+    background-color: var(--card-bg-dark);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+
+body.dark-mode .app-header {
+    border-bottom-color: #3A3A3C;
+}
+
+body.dark-mode .app-header h1 {
+    color: #BBBBBC; /* Aksen terang di dark mode */
+}
+
+body.dark-mode .dark-mode-toggle {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #FDFDFD;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .dark-mode-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Card di Dark Mode */
+body.dark-mode .card {
+    background-color: var(--card-bg-dark);
+    border-color: #444446;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+body.dark-mode .card-title {
+    color: #BBBBBC; /* Aksen terang di dark mode */
+}
+
+/* --- GARIS DIBAWAH JUDUL KARTU DIHAPUS DI DARK MODE JUGA --- */
+/* body.dark-mode .card-title::after {
+    background-color: #BBBBBC;
+} */
+
+body.dark-mode .upload-btn {
+    background-color: #BBBBBC; /* Aksen terang di dark mode */
+    color: #333;
+}
+
+body.dark-mode .upload-btn:hover {
+    background-color: #A0A0A0;
+}
+
+body.dark-mode .file-name {
+    color: #BBBBBC;
+}
+
+body.dark-mode .image-preview-container {
+    background-color: #3A3A3C;
+    border-color: #444446;
+}
+
+body.dark-mode .placeholder-text {
+    color: #AAAAAA;
+}
+
+body.dark-mode .format-btn {
+    background-color: #3A3A3C;
+    color: #FDFDFD;
+    border-color: #444446;
+}
+
+body.dark-mode .format-btn:hover:not(.selected) {
+    background-color: #4A4A4C;
+    border-color: #6A6A6C;
+}
+
+body.dark-mode .format-btn.selected {
+    background-color: #BBBBBC; /* Aksen terang di dark mode */
+    color: #333;
+    border-color: #BBBBBC;
+}
+
+body.dark-mode .download-btn {
+    background-color: #BBBBBC; /* Aksen terang di dark mode */
+    color: #333;
+}
+
+body.dark-mode .download-btn:hover:not(:disabled) {
+    background-color: #A0A0A0;
+}
+
+body.dark-mode .download-btn:disabled {
+    background-color: #555;
+    color: #999;
+}
+
+body.dark-mode .status-area.success {
+    background-color: rgba(40, 167, 69, 0.2);
+    color: var(--success-color);
+}
+
+body.dark-mode .status-area.error {
+    background-color: rgba(220, 53, 69, 0.2);
+    color: var(--error-color);
+}
+
+body.dark-mode .status-area.info {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #BBBBBC;
+}
+
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    body {
+        min-height: 100vh;
+        align-items: flex-start;
+        padding: 20px 0;
+    }
+    .container {
+        width: 100%;
+        min-height: 95vh;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 20px;
+    }
+    .app-header {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-bottom: 20px;
+    }
+    .app-header h1 {
+        font-size: 2em;
+        margin-bottom: 15px;
+    }
+    .dark-mode-toggle {
+        position: static;
+        margin-left: auto;
+    }
+    .upload-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .upload-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    .file-name {
+        width: 100%;
+        text-align: center;
+    }
+    .card { /* Sesuaikan padding kartu di mobile */
+        padding: 15px;
+    }
+    .card-title {
+        font-size: 1.4em;
+    }
+    .image-preview-container {
+        min-height: 150px;
+    }
+    .format-options {
+        flex-direction: column;
+    }
+    .format-btn {
+        width: 100%;
+    }
+    .download-btn {
+        font-size: 1em;
+        padding: 10px 20px;
+    }
+}

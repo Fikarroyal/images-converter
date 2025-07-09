@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Images Converter</title>
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23FFFFFF'/><path d='M75 50L55 30V45H25V55H55V70L75 50Z' fill='%231C1C1E'/></svg>" type="image/svg+xml">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="app-header">
+            <h1>Images Converter</h1>
+            <button id="darkModeToggle" class="dark-mode-toggle" title="Toggle Dark/Light Mode">
+                <i class="fas fa-moon"></i>
+            </button>
+        </header>
+
+        <main class="main-content">
+            <div class="card upload-section">
+                <label for="imageInput" class="upload-btn">
+                    <i class="fas fa-cloud-upload-alt"></i> Upload Image
+                </label>
+                <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                <span id="fileName" class="file-name">No file chosen</span>
+            </div>
+
+            <div class="card preview-section">
+                <h2 class="card-title">Preview</h2>
+                <div class="image-preview-container">
+                    <img id="previewImage" src="#" alt="Image Preview" style="display: none;">
+                    <p id="previewPlaceholder" class="placeholder-text">Your uploaded image will appear here.</p>
+                </div>
+            </div>
+
+            <div class="card conversion-section">
+                <h2 class="card-title">Convert To:</h2>
+                <div class="format-options">
+                    <button class="format-btn" data-format="png">PNG</button>
+                    <button class="format-btn" data-format="jpeg">JPG</button>
+                    <button class="format-btn" data-format="webp">WebP</button>
+                    <button class="format-btn" data-format="ico">ICO</button>
+                    <button class="format-btn" data-format="gif">GIF</button>
+                    <button class="format-btn" data-format="bmp">BMP</button>
+                    </div>
+                <button id="downloadBtn" class="download-btn" disabled><i class="fas fa-download"></i> Download Converted Image</button>
+            </div>
+
+            <div class="status-area" id="statusArea">
+                </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
