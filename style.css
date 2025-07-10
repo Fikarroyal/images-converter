@@ -42,12 +42,12 @@ body {
     display: flex;
     flex-direction: column;
     width: 90%;
-    max-width: 800px; /* Lebar optimal untuk tool ini, disesuaikan */
-    min-height: 85vh;
+    max-width: 600px;      /* dari 800px menjadi lebih ramping */
+    min-height: auto;
     background-color: var(--card-bg-light);
-    border-radius: 12px;
-    box-shadow: 0 10px 40px var(--shadow-light);
-    padding: 30px; /* Konsisten dengan padding card */
+    border-radius: 8px;    /* dari 12px → 8px agar sudut lebih kecil */
+    box-shadow: 0 4px 20px var(--shadow-light); /* lebih soft */
+    padding: 20px;         /* dari 30px → 20px supaya dalamnya lebih kecil */
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
